@@ -4,55 +4,65 @@ import axios from 'axios';
 import 'codemirror/keymap/sublime';
 import 'codemirror/theme/dracula.css';
 import CodeMirror from '@uiw/react-codemirror';
+import AppBar from '@mui/material/AppBar';
+import Stack from '@mui/material/Stack';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import { ThemeProvider, createTheme,useTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import * as React from 'react'
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import CodeCard from './components/CodeCard';
 
-function App() {
-  const [code, setCode] = useState('');
-  const [testCaseResults, setTestCaseResults] = useState([]);
 
-  const checkCode = () => {
-    axios
-      .post('http://localhost:80/python', { code })
-      .then(({ data }) => {
-        setTestCaseResults(data.testCaseResults);
-      })
-      .catch((err) => console.log(err));
-  };
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <div className="absolute top-20 bottom-40 left-20 right-20 text-left">
-          <div>Create a function to add two numbers.</div>
-          <div className="flex space-x-2">
-            {testCaseResults.map((res, i) => {
-              return (
-                <div key={i}>
-                  <div>{res === 'True' ? '✅ passed' : '❌ failed'}</div>
-                </div>
-              );
-            })}
-          </div>
-          <CodeMirror
-            value={code}
-            options={{
-              theme: 'dracula',
-              keyMap: 'sublime',
-              mode: 'python',
-            }}
-            onChange={(editor, data, value) => {
-              setCode(editor.getValue());
-            }}
-            className="w-96 h-80"
-          />
-          <div
-            onClick={() => checkCode()}
-            className="border-2 p-2 bg-green-600"
-          >
-            Submit Code
-          </div>
-        </div>
-      </header>
-    </div>
+const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+
+function App(pros) {
+  const [mode, setMode] = React.useState('light');
+  const colorMode = React.useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+      },
+    }),
+    [],
+  );
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+        },
+      }),
+    [mode],
+  );
+
+
+
+
+  return (  
+    <ColorModeContext.Provider value={colorMode}>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Toolbar>
+        <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+          label
+        </Typography>
+        <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+          {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+        </IconButton>
+      </Toolbar>
+      <main><CodeCard/></main> 
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 

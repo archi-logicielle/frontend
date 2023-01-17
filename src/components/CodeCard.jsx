@@ -4,22 +4,26 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-export default function CodeCard() {
-   /*  const props ={} */
+export default function CodeCard(props) {
+     const {image,alt,title,description}=props
   return (
+    
+
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
+          sx={{height: 140}}
           component="img"
-          image="../assets/php.jpg"
-          alt="php"
+          height={140}
+          image={image}
+          alt={alt}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            PHP
+            {title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Server based Language
+            {description}
           </Typography>
         </CardContent>
       </CardActionArea>

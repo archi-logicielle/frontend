@@ -15,9 +15,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import * as React from 'react'
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import CodeCard from './components/CodeCard';
-
-
+import Home from './view/Home';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -49,18 +47,20 @@ function App(pros) {
     <ColorModeContext.Provider value={colorMode}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-          label
-        </Typography>
-        <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
-          {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-        </IconButton>
-      </Toolbar>
-      <main><CodeCard/></main> 
+      <AppBar position="sticky" >
+        <Toolbar variant='dense'>
+          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+            LOGO
+          </Typography>
+          <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+            {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+       <Home/>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

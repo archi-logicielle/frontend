@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Box} from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import Menu from "../view/navbar/Menu";
 
 function GridSx() {
     return(
@@ -23,7 +24,8 @@ const appliedStyle = {
     backgroundColor : 'grey'}
 }
 
-function ExerciceInterface() {
+function ExerciceInterface(props) {
+    console.log(props)
     return(
         <Grid container
         className="grid"> 
@@ -33,21 +35,33 @@ function ExerciceInterface() {
                     alignItems: 'stretch',
                     width: '200px',
                 }}>
+                    <Menu courses={props.courses} setExercice={props.setExercice} setCourse={props.setCourse}></Menu>
             </Grid> 
-
+            {/* {course && <div>
+        //             {course.title}
+        //         </div>}
+        //         {exercice && <div>
+        //             {exercice.title} <br />
+        //             {exercice.content} <br />
+        //         </div>} */}
             <Grid item
                 xs = {5}
                 sx = {{alignItems: 'stretch'}}>
-                    <Grid item sx = {{appliedStyle}}></Grid>
-                    <Grid item sx = {{backgroundColor: 'green', height: '50vh'}}></Grid>
+                    {/* <Grid item sx = {{appliedStyle}}></Grid> */}
+                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '50vh'}}>
+                        {props.course && props.course.title}
+                    </Grid>
+                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '50vh'}}>
+                        {props.exercice && props.exercice.title}
+                    </Grid>
             </Grid>
 
             <Grid item
                 sx = {{alignItems: 'stretch',
                         flexGrow: 1}}>
                <Grid item>
-                    <Grid item sx = {{backgroundColor: 'grey', height: '65vh'}}></Grid>
-                    <Grid item sx = {{backgroundColor: 'red', height: '35vh'}}></Grid>
+                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '65vh'}}></Grid>
+                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '35vh'}}></Grid>
                </Grid>
             </Grid>  
         </Grid>)

@@ -153,10 +153,7 @@ export default function Menu(props) {
          return (
             <CustomTreeItem  nodeId={`course-${course.id}`} label={course.title} key={index}>
                 {course.exercices.map((exercice, index) =>
-                    // eslint-disable-next-line
-                    //<a onClick={showPage} key={index}>
-                        <CustomTreeItem key={index} nodeId={`course-${course.id}-exercice-${exercice.id}`} label={exercice.title} />
-                    //</a>
+                    <CustomTreeItem key={index} nodeId={`course-${course.id}-exercice-${exercice.id}`} label={exercice.title} />
                 )}
             </CustomTreeItem>)
       })}

@@ -1,9 +1,10 @@
-import Menu from "../navbar/Menu";
 import React from "react";
+import ExerciceInterface from "../../components/ExerciceInterface";
 
 function Javascript(){
     const [exercice, setExercice] = React.useState(null);
     const [course, setCourse] = React.useState(null);
+    
     const exercicesCourse1 = [
         {
             id: 1,
@@ -105,20 +106,7 @@ function Javascript(){
     console.log("exercice : ", exercice)
 
     return (
-        <div style={{ display: 'flex' }}>
-            <div>
-                <Menu courses={courses} setExercice={setExercice} setCourse={setCourse} />
-            </div>
-            <div>
-                {course && <div>
-                    {course.title}
-                </div>}
-                {exercice && <div>
-                    {exercice.title} <br />
-                    {exercice.content} <br />
-                </div>}
-            </div>
-        </div>
+        <ExerciceInterface courses={courses} setExercice={setExercice} exercice={exercice} setCourse={setCourse} course={course}></ExerciceInterface>
     )
 }
 

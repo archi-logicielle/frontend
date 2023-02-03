@@ -125,7 +125,7 @@ function CustomTreeItem(props) {
 export default function Menu(props) {
     const courses = props.courses;
 
-    const handleClick = (selectedTree) => {
+    const handleClick = (event, selectedTree) => {
         const selectedTreeSplitted = selectedTree.split("-");
         const courseId = parseInt(selectedTreeSplitted[1], 10);
         const c = courses[courseId - 1]

@@ -9,12 +9,14 @@ function Javascript(){
         {
             id: 1,
             title: "Exercice 1",
-            content: "Description de l'exercice 1"
+            content: "Description de l'exercice 1",
+            
         },
         {
             id: 2,
             title: "Exercice 2",
-            content: "Description de l'exercice 2"
+            content: "Description de l'exercice 2",
+            language:"javascript"
         },
         {
             id: 3,
@@ -47,17 +49,20 @@ function Javascript(){
         {
             id: 1,
             title: "Exercice 1",
-            content: "Description de l'exercice 1"
+            content: "Description de l'exercice 1",
+            
         },
         {
             id: 2,
             title: "Exercice 2",
-            content: "Description de l'exercice 2"
+            content: "Description de l'exercice 2",
+     
         },
         {
             id: 3,
             title: "Exercice 3",
-            content: "Description de l'exercice 3"
+            content: "Description de l'exercice 3",
+            
         },
         {
             id: 4,
@@ -88,17 +93,23 @@ function Javascript(){
         {
             id: 1,
             title: "Cours 1",
-            exercices: exercicesCourse1
+            exercices: exercicesCourse1,
+            content:"content cours 1",
+            language:"javascript"
         },
         {
             id: 2,
             title: "Cours 2",
-            exercices: exercicesCourse2
+            exercices: exercicesCourse2,
+            content:"content cours 1",
+            language:"javascript"
         },
         {
             id: 3,
             title: "Cours 3",
-            exercices: exercicesCourse3
+            exercices: exercicesCourse3,
+            content:"content cours 1",
+            language:"javascript"
         }
     ]
 

@@ -1,8 +1,9 @@
 import React from "react";
-import { Grid, Box} from "@mui/material";
+import { Grid, Box, Paper} from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Menu from "../view/navbar/Menu";
-
+import { Padding } from "@mui/icons-material";
+import EditorType from "./Editor";
 function GridSx() {
     return(
         <Grid container
@@ -18,19 +19,13 @@ function GridSx() {
     )
 }
 
-const appliedStyle = {
-    grid: {border : 1,
-    borderColor : 'white',
-    backgroundColor : 'grey'}
-}
-
 function ExerciceInterface(props) {
-    console.log(props)
+    console.log(props.course)
     return(
         <Grid container
         className="grid"> 
             <Grid item
-                style = {appliedStyle}
+                
                 sx = {{
                     alignItems: 'stretch',
                     width: '200px',
@@ -40,12 +35,49 @@ function ExerciceInterface(props) {
             <Grid item
                 xs = {5}
                 sx = {{alignItems: 'stretch'}}>
-                    {/* <Grid item sx = {{appliedStyle}}></Grid> */}
-                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '50vh'}}>
-                        {props.course && props.course.title}
+                    
+                    <Grid item sx = {{ height: '50vh'}}>
+                 
+                       {props.course && <Box variant="outlined" 
+                        elevation={24}
+                        
+                        sx={{
+                            height:'90%',
+                            width:"auto",
+                            marginTop:'2rem',
+                            marginX:"1rem",
+                            wordWrap: 'break-word',
+                            overflowY: "scroll"
+                        }}><h1>{props.course && props.course.title}</h1>
+                            
+                                <Box sx={{
+
+                                }}>
+                                    {props.course && props.course.content}
+                                </Box>
+                            
+                        </Box>}
+                    
                     </Grid>
                     <Grid item sx = {{border: '1px solid #e8e8e8', height: '50vh'}}>
-                        {props.exercice && props.exercice.title}
+                    
+                        {props.exercice && <Box variant="outlined" 
+                        elevation={24}
+                        
+                        sx={{
+                            height:'90%',
+                            marginTop:'2rem',
+                            marginX:"1rem",
+                            wordWrap: 'break-word',
+                            overflowY: "scroll"
+                          
+                        }}><h1>{props.exercice && props.exercice.title}</h1>
+                          
+                                <Box>
+                                    {props.exercice && props.exercice.content}
+                                </Box>
+                            
+                        </Box>}
                     </Grid>
             </Grid>
 
@@ -53,8 +85,8 @@ function ExerciceInterface(props) {
                 sx = {{alignItems: 'stretch',
                         flexGrow: 1}}>
                <Grid item>
-                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '65vh'}}></Grid>
-                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '35vh'}}></Grid>
+                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '65vh'}}>{props.exercice && <EditorType language={props.course.language}/>}</Grid>
+                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '35vh'}}>Reponse</Grid>
                </Grid>
             </Grid>  
         </Grid>)

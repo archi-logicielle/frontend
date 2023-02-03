@@ -66,10 +66,11 @@ function Home(){
         spacing={4}
         className={classes.gridContainer}
         justify="center"
+        sx={{ marginTop: '10px', marginBottom: '20px' }}
       >
-        {modules.map((module) => {
+        {modules.map((module, index) => {
           return (
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid item xs={12} sm={6} md={4} key={index}>
               {module.ready ?
                 <a href={module.link} style={{textDecoration: 'none'}}>
                   <CodeCard

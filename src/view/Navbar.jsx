@@ -8,25 +8,26 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import {createTheme } from '@mui/material/styles';
 
 const Navbar = (props) => {
-    const [mode, setMode] = React.useState('light');
-  const colorMode = React.useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
-      },
-    }),
-    [],
-  );
+  //   const [mode, setMode] = React.useState('light');
+  // const colorMode = React.useMemo(
+  //   () => ({
+  //     toggleColorMode: () => {
+  //       console.log('toggleColorMode')
+  //       setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+  //     },
+  //   }),
+  //   [],
+  // );
 
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-        },
-      }),
-    [mode],
-  );
+  // const theme = React.useMemo(
+  //   () =>
+  //     createTheme({
+  //       palette: {
+  //         mode,
+  //       },
+  //     }),
+  //   [mode],
+  // );
   
     return (
         <div>
@@ -38,9 +39,9 @@ const Navbar = (props) => {
                 <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
                     LOGO
                 </Typography>
-                <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+                {/* <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
                     {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-                </IconButton>
+                </IconButton> */}
                 </Toolbar>
             </AppBar>
        </div>

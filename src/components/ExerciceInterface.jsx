@@ -37,13 +37,6 @@ function ExerciceInterface(props) {
                 }}>
                     <Menu courses={props.courses} setExercice={props.setExercice} setCourse={props.setCourse}></Menu>
             </Grid> 
-            {/* {course && <div>
-        //             {course.title}
-        //         </div>}
-        //         {exercice && <div>
-        //             {exercice.title} <br />
-        //             {exercice.content} <br />
-        //         </div>} */}
             <Grid item
                 xs = {5}
                 sx = {{alignItems: 'stretch'}}>

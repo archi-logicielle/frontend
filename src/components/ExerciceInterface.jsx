@@ -1,37 +1,35 @@
-import React from "react";
-import { Grid, Box} from "@mui/material";
-import { createTheme } from "@mui/system";
+import { Grid } from "@mui/material";
+import Menu from "../view/navbar/Menu";
 
-const theme = createTheme({
-    border : 3,
-    borderColor : 'white',
-    backgroundColor : 'grey'
-})
-
-function ExerciceInterface() {
+function ExerciceInterface(props) {
+    console.log(props)
     return(
         <Grid container> 
             <Grid item
                 sx = {{
-                    theme,
                     alignItems: 'stretch',
                     width: '200px',
                 }}>
-            </Grid> 
+                    <Menu courses={props.courses} setExercice={props.setExercice} setCourse={props.setCourse}></Menu>
+            </Grid>
 
             <Grid item
                 xs = {5}
                 sx = {{alignItems: 'stretch'}}>
-                    <Grid item sx = {{height: '50vh'}}></Grid>
-                    <Grid item sx = {{height: '50vh'}}></Grid>
+                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '50vh'}}>
+                        {props.course && props.course.title}
+                    </Grid>
+                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '50vh'}}>
+                        {props.exercice && props.exercice.title}
+                    </Grid>
             </Grid>
 
             <Grid item className="grid"
                 sx = {{alignItems: 'stretch',
                         flexGrow: 1}}>
                <Grid item>
-                    <Grid item sx = {{height: '65vh'}}></Grid>
-                    <Grid item sx = {{height: '35vh'}}></Grid>
+                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '65vh'}}></Grid>
+                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '35vh'}}></Grid>
                </Grid>
             </Grid>  
         </Grid>)

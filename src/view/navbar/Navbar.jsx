@@ -1,9 +1,10 @@
-import { AppBar, IconButton, Toolbar, Typography } from "@material-ui/core"
+import { AppBar, Toolbar, Typography } from "@material-ui/core"
 import 'codemirror/keymap/sublime';
 import 'codemirror/theme/dracula.css';
-import MenuIcon from '@mui/icons-material/Menu';
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+    const navigate = useNavigate();
   //   const [mode, setMode] = React.useState('light');
   // const colorMode = React.useMemo(
   //   () => ({
@@ -24,16 +25,17 @@ const Navbar = () => {
   //     }),
   //   [mode],
   // );
+
+    const goHome = () => {
+        navigate('/')
+    }
   
     return (
         <div>
             <AppBar position="sticky" >
                 <Toolbar variant='dense'>
-                <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-                    <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-                    LOGO
+                <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }} onClick={goHome}>
+                    Home
                 </Typography>
                 {/* <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
                     {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}

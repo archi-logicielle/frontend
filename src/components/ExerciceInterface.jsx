@@ -1,35 +1,19 @@
 import React from "react";
 import { Grid, Box} from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { createTheme } from "@mui/system";
 
-function GridSx() {
-    return(
-        <Grid container
-          sx={{
-            border: 1,
-            borderColor: 'primary.main',
-            backgroundColor: 'primary.light',
-            color: 'primary.main',
-            height: '100vh',
-          }}>
-            <h1>CodeCard</h1>
-        </Grid>
-    )
-}
-
-const appliedStyle = {
-    grid: {border : 1,
+const theme = createTheme({
+    border : 3,
     borderColor : 'white',
-    backgroundColor : 'grey'}
-}
+    backgroundColor : 'grey'
+})
 
 function ExerciceInterface() {
     return(
-        <Grid container
-        className="grid"> 
+        <Grid container> 
             <Grid item
-                style = {appliedStyle}
                 sx = {{
+                    theme,
                     alignItems: 'stretch',
                     width: '200px',
                 }}>
@@ -38,16 +22,16 @@ function ExerciceInterface() {
             <Grid item
                 xs = {5}
                 sx = {{alignItems: 'stretch'}}>
-                    <Grid item sx = {{appliedStyle}}></Grid>
-                    <Grid item sx = {{backgroundColor: 'green', height: '50vh'}}></Grid>
+                    <Grid item sx = {{height: '50vh'}}></Grid>
+                    <Grid item sx = {{height: '50vh'}}></Grid>
             </Grid>
 
-            <Grid item
+            <Grid item className="grid"
                 sx = {{alignItems: 'stretch',
                         flexGrow: 1}}>
                <Grid item>
-                    <Grid item sx = {{backgroundColor: 'grey', height: '65vh'}}></Grid>
-                    <Grid item sx = {{backgroundColor: 'red', height: '35vh'}}></Grid>
+                    <Grid item sx = {{height: '65vh'}}></Grid>
+                    <Grid item sx = {{height: '35vh'}}></Grid>
                </Grid>
             </Grid>  
         </Grid>)

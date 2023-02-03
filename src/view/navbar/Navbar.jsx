@@ -1,13 +1,9 @@
 import { AppBar, IconButton, Toolbar, Typography } from "@material-ui/core"
-import React from 'react';
 import 'codemirror/keymap/sublime';
 import 'codemirror/theme/dracula.css';
 import MenuIcon from '@mui/icons-material/Menu';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-import {createTheme } from '@mui/material/styles';
 
-const Navbar = (props) => {
+const Navbar = () => {
   //   const [mode, setMode] = React.useState('light');
   // const colorMode = React.useMemo(
   //   () => ({

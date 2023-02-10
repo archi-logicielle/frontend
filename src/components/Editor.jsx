@@ -2,9 +2,12 @@ import Editor from "@monaco-editor/react"
 import React, {useRef} from "react"
 import {Button,Box,Fab} from "@mui/material"
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
+import axios from 'axios';
+import parse from 'html-react-parser';
+
 export default function EditorType(props){
    
-    const {language}=props
+    const {language,language_id}=props
     console.info(language)
     const editorRef =useRef(null) 
     
@@ -13,14 +16,73 @@ export default function EditorType(props){
         editorRef.current =editor;
     }
 
-    const getEditorValue= ()=>{
-      alert(editorRef.current.getValue());
+
+    const getEditorValue=  async ()=>{
+      alert(editorRef.current.getValue(),language_id);
+      const options = {
+        method: 'POST',
+        url: 'https://judge0-ce.p.rapidapi.com/submissions/?base64_encoded=false&fields=*',
+        headers: {
+          'Content-Type': 'application/json',
+          'content-type': 'application/json',
+          'X-RapidAPI-Key': '9dc2f20cd1msha8831e2c3f29c40p14db9djsnc8f462468e01',
+          'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
+          accept: "application/json"
+        },
+        data: JSON.stringify({
+          source_code: `${editorRef.current.getValue()}`,
+          stdin: '',
+          language_id: language_id
+        }),
+      };
+      await axios.request(options).then(function (response) {
+        console.log(response.data);
+        const token=response.data.token
+        console.log(token)
+        const optionsGet = {
+          method: 'GET',
+          url: `https://judge0-ce.p.rapidapi.com/submissions/${token}?base64_encoded=true`,
+          headers: {
+            'X-RapidAPI-Key': 'af4b035371msh2996afbaa09fd30p135789jsn0a3c647fecec',
+            'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
+            'Content-Type': 'application/json',
+            'content-type': 'application/json',
+          },
+        }
+        axios.request(optionsGet).then(function (response) {
+          if (response.data.stdout!=null){
+          const output=(response.data.stdout)
+          alert(window.atob(output))}else{
+            const errOutput=(response.data.stderr)
+            alert(window.atob(errOutput))
+          }
+        }).catch(function (error) {
+          console.error(error);
+        }) 
+
+
+      }).catch(function (error) {
+        console.error(error);
+      });
+     /* await axios.post('https://judge0-ce.p.rapidapi.com/submissions',{headers:{
+          "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
+          "x-rapidapi-key": "af4b035371msh2996afbaa09fd30p135789jsn0a3c647fecec", // Get yours for free at https://rapidapi.com/judge0-official/api/judge0-ce/
+          "Content-Type": "application/json",
+          accept: "application/json",},
+          body: 
+            JSON.stringify({
+              source_code: editorRef.current.getValue(),
+              stdin: "",
+              language_id: language_id
+            }),
+        },).then((res)=>console.log(res)).catch((err)=>console.log(err)) */
+      //In this function we can send the code to judge0 throught a POST request  and GET the output
     } 
     return(
         <Box sx={{height:'90%',
         marginTop:'0.5rem',
         marginX:"1rem",}}>
-            <p>{language}</p>
+            <p>{language_id}</p>
             <Editor
                 height="85%"
                 width="90%"

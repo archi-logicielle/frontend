@@ -87,9 +87,9 @@ function ExerciceInterface(props) {
                 sx = {{alignItems: 'stretch',
                         flexGrow: 1}}>
                <Grid item>
-                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '65vh'}}>{props.exercice && <EditorType language={props.course.language}/>}</Grid>
+                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '65vh'}}>{props.exercice && <EditorType language={props.course.language} language_id={props.course.language_id}/>}</Grid>
                     <Grid item sx = {{border: '1px solid #e8e8e8', height: '35vh'}}>Reponse</Grid>
-               </Grid>
+               </Grid> 
             </Grid>  
         </Grid>)
 }

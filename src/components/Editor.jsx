@@ -1,6 +1,6 @@
 import Editor from "@monaco-editor/react"
-import React, {useRef} from "react"
-import {Button,Box,Fab} from "@mui/material"
+import {useRef} from "react"
+import {Box,Fab} from "@mui/material"
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
 export default function EditorType(props){
    
@@ -20,7 +20,6 @@ export default function EditorType(props){
         <Box sx={{height:'90%',
         marginTop:'0.5rem',
         marginX:"1rem",}}>
-            <p>{language}</p>
             <Editor
                 height="85%"
                 width="90%"

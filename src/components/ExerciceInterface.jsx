@@ -4,6 +4,8 @@ import { makeStyles } from "@mui/styles";
 import Menu from "../view/navbar/Menu";
 import { Padding } from "@mui/icons-material";
 import EditorType from "./Editor";
+import parse from 'html-react-parser';
+
 function GridSx() {
     return(
         <Grid container
@@ -74,7 +76,7 @@ function ExerciceInterface(props) {
                         }}><h1>{props.exercice && props.exercice.title}</h1>
                           
                                 <Box>
-                                    {props.exercice && props.exercice.content}
+                                    {props.exercice && parse(props.exercice.content)}
                                 </Box>
                             
                         </Box>}

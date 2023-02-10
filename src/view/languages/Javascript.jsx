@@ -9,7 +9,7 @@ function Javascript(){
         {
             id: 1,
             title: "Exercice 1",
-            content: "Description de l'exercice 1",
+            content: "Description de l'exercice 1 <br> <h1>TEST HTML</h1>",
             
         },
         {

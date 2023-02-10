@@ -1,28 +1,13 @@
 import React from "react";
-import { Grid, Box, Paper} from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { Grid, Box} from "@mui/material";
 import Menu from "../view/navbar/Menu";
-import { Padding } from "@mui/icons-material";
 import EditorType from "./Editor";
 import parse from 'html-react-parser';
 
-function GridSx() {
-    return(
-        <Grid container
-          sx={{
-            border: 1,
-            borderColor: 'primary.main',
-            backgroundColor: 'primary.light',
-            color: 'primary.main',
-            height: '100vh',
-          }}>
-            <h1>CodeCard</h1>
-        </Grid>
-    )
-}
-
 function ExerciceInterface(props) {
-    console.log(props.course)
+    console.log(props)
+    const [result, setResult] = React.useState(null);
+
     return(
         <Grid container> 
             <Grid item
@@ -55,7 +40,7 @@ function ExerciceInterface(props) {
                                 <Box sx={{
 
                                 }}>
-                                    {props.course && props.course.content}
+                                    {props.course && parse(props.course.description)}
                                 </Box>
                             
                         </Box>}
@@ -76,7 +61,34 @@ function ExerciceInterface(props) {
                         }}><h1>{props.exercice && props.exercice.title}</h1>
                           
                                 <Box>
-                                    {props.exercice && parse(props.exercice.content)}
+                                    {props.exercice && parse(props.exercice.description)}
+                                    {props.exercice.image && <img
+                                        style={{width: '90%'}}
+                                        src={props.exercice.image}
+                                        alt={props.exercice.title}>
+                                    </img>}
+                                </Box>
+                            
+                        </Box>}
+                        {props.course && !props.exercice && <Box variant="outlined" 
+                        elevation={24}
+                        
+                        sx={{
+                            height:'90%',
+                            marginTop:'2rem',
+                            marginX:"1rem",
+                            wordWrap: 'break-word',
+                            overflowY: "scroll"
+                          
+                        }}><h1>Exemple</h1>
+                          
+                                <Box>
+                                    {props.course && parse(props.course.exemple)}
+                                    {props.course.exemple && <img
+                                        style={{width: '90%'}}
+                                        src={props.course.image}
+                                        alt={props.course.title}>
+                                    </img>}
                                 </Box>
                             
                         </Box>}
@@ -87,9 +99,12 @@ function ExerciceInterface(props) {
                 sx = {{alignItems: 'stretch',
                         flexGrow: 1}}>
                <Grid item>
-                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '65vh'}}>{props.exercice && <EditorType language={props.course.language} language_id={props.course.language_id}/>}</Grid>
-                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '35vh'}}>Reponse</Grid>
-               </Grid> 
+                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '65vh'}}>{props.exercice && <EditorType language={props.course.language} setResult={setResult} />}</Grid>
+                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '35vh'}}>
+                        {props.exercice && result && props.exercice.answer.includes(result) && <p>Well done!</p>}
+                        {props.exercice && result && !props.exercice.answer.includes(result) && <p>Try again!</p>}
+                    </Grid>
+               </Grid>
             </Grid>  
         </Grid>)
 }

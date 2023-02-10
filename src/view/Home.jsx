@@ -1,6 +1,7 @@
 import CodeCard from "../components/CodeCard";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@material-ui/core";
+import { data } from "../data/index";
 
 const useStyles = makeStyles({
     gridContainer: {
@@ -9,57 +10,12 @@ const useStyles = makeStyles({
       marginTop: "40px"
     }
   });
-
-const modules = [
-  {
-    image: "../../images/php.jpg",
-    alt: "php",
-    title: "PHP",
-    ready: false,
-    link: "/php",
-    description:
-      "PHP est un langage dit « script » qui permet de faire des communications côté serveur. Il peut donc gérer diverses fonctions telles que la collecte de données de formulaires, la gestion de fichiers sur le serveur, la modification de bases de données",
-  },
-  {
-    image: "../../images/java.jpg",
-    alt: "Java",
-    title: "JAVA",
-    ready: true,
-    link: "/java",
-    description:
-      "PHP est un langage dit « script » qui permet de faire des communications côté serveur. Il peut donc gérer diverses fonctions telles que la collecte de données de formulaires, la gestion de fichiers sur le serveur, la modification de bases de données",
-  },
-  {
-    image: "../../images/js.png",
-    alt: "javascript",
-    title: "Javascript",
-    ready: true,
-    link: "/js",
-    description:
-      "PHP est un langage dit « script » qui permet de faire des communications côté serveur. Il peut donc gérer diverses fonctions telles que la collecte de données de formulaires, la gestion de fichiers sur le serveur, la modification de bases de données",
-  },
-  {
-    image: "../../images/linux-shell.jpg",
-    alt: "linux",
-    title: "Bash",
-    ready: false,
-    link: "/bash",
-    description:
-      "PHP est un langage dit « script » qui permet de faire des communications côté serveur. Il peut donc gérer diverses fonctions telles que la collecte de données de formulaires, la gestion de fichiers sur le serveur, la modification de bases de données",
-  },
-  {
-    image: "../../images/ubuntu.png",
-    alt: "Ubuntu",
-    title: "Machine virtuelle",
-    ready: false,
-    link: "/vm",
-    description:
-      "PHP est un langage dit « script » qui permet de faire des communications côté serveur. Il peut donc gérer diverses fonctions telles que la collecte de données de formulaires, la gestion de fichiers sur le serveur, la modification de bases de données",
-  },
-];
   
 function Home(){
     const classes = useStyles();
+
+    const modules = data;
+    
     return (
       <Grid
         container

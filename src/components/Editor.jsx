@@ -1,6 +1,6 @@
 import Editor from "@monaco-editor/react"
-import React, {useRef} from "react"
-import {Button,Box,Fab} from "@mui/material"
+import {useRef} from "react"
+import {Box,Fab} from "@mui/material"
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
 import axios from 'axios';
 import parse from 'html-react-parser';
@@ -10,7 +10,6 @@ export default function EditorType(props){
     const {language,language_id}=props
     console.info(language)
     const editorRef =useRef(null) 
-    
      
      const handleEditorMount=(editor,monaco)=>{
         editorRef.current =editor;
@@ -82,7 +81,6 @@ export default function EditorType(props){
         <Box sx={{height:'90%',
         marginTop:'0.5rem',
         marginX:"1rem",}}>
-            <p>{language_id}</p>
             <Editor
                 height="85%"
                 width="90%"

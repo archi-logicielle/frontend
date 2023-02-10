@@ -6,6 +6,7 @@ import parse from 'html-react-parser';
 
 function ExerciceInterface(props) {
     console.log(props)
+    const [result, setResult] = React.useState(null);
 
     return(
         <Grid container> 
@@ -61,6 +62,11 @@ function ExerciceInterface(props) {
                           
                                 <Box>
                                     {props.exercice && parse(props.exercice.description)}
+                                    {props.exercice.image && <img
+                                        style={{width: '90%'}}
+                                        src={props.exercice.image}
+                                        alt={props.exercice.title}>
+                                    </img>}
                                 </Box>
                             
                         </Box>}
@@ -81,7 +87,7 @@ function ExerciceInterface(props) {
                                     {props.course.exemple && <img
                                         style={{width: '90%'}}
                                         src={props.course.image}
-                                        alt="Grapefruit slice atop a pile of other slices">
+                                        alt={props.course.title}>
                                     </img>}
                                 </Box>
                             
@@ -93,8 +99,11 @@ function ExerciceInterface(props) {
                 sx = {{alignItems: 'stretch',
                         flexGrow: 1}}>
                <Grid item>
-                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '65vh'}}>{props.exercice && <EditorType language={props.course.language}/>}</Grid>
-                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '35vh'}}>{props.exercice && 'Reponse'}</Grid>
+                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '65vh'}}>{props.exercice && <EditorType language={props.course.language} setResult={setResult} />}</Grid>
+                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '35vh'}}>
+                        {props.exercice && result && props.exercice.answer.includes(result) && <p>Well done!</p>}
+                        {props.exercice && result && !props.exercice.answer.includes(result) && <p>Try again!</p>}
+                    </Grid>
                </Grid>
             </Grid>  
         </Grid>)

@@ -4,17 +4,17 @@ import {Box,Fab} from "@mui/material"
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
 export default function EditorType(props){
    
-    const {language}=props
+    const {language, setResult}=props
     console.info(language)
     const editorRef =useRef(null) 
-    
      
      const handleEditorMount=(editor,monaco)=>{
         editorRef.current =editor;
     }
 
     const getEditorValue= ()=>{
-      alert(editorRef.current.getValue());
+      setResult(editorRef.current.getValue())
+      // alert(editorRef.current.getValue());
     } 
     return(
         <Box sx={{height:'90%',

@@ -10,7 +10,7 @@ function Java(){
     console.log("exercice : ", exercice)
 
     return (
-        <ExerciceInterface courses={coursesJava} setExercice={setExercice} exercice={exercice} setCourse={setCourse} course={course}></ExerciceInterface>
+        <ExerciceInterface courses={coursesJava} setExercice={setExercice} exercice={exercice} setCourse={setCourse} course={course} exores={exercice}></ExerciceInterface>
     )
 }
 

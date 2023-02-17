@@ -3,9 +3,11 @@ import { Grid, Box} from "@mui/material";
 import Menu from "../view/navbar/Menu";
 import EditorType from "./Editor";
 import parse from 'html-react-parser';
+import { exercices } from "../data/java/courses/js/lesson1";
 
 function ExerciceInterface(props) {
     console.log(props)
+    console.log(props.exercices)
     const [result, setResult] = React.useState(null);
 
     return(
@@ -23,7 +25,7 @@ function ExerciceInterface(props) {
                 xs = {5}
                 sx = {{alignItems: 'stretch'}}>
                     
-                    <Grid item sx = {{ height: '50vh'}}>
+                    <Grid item sx = {{ border: '1px solid #e8e8e8',height: '50vh'}}>
                  
                        {props.course && <Box variant="outlined" 
                         elevation={24}
@@ -99,11 +101,8 @@ function ExerciceInterface(props) {
                 sx = {{alignItems: 'stretch',
                         flexGrow: 1}}>
                <Grid item>
-                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '65vh'}}>{props.exercice && <EditorType language={props.course.language} setResult={setResult} />}</Grid>
-                    <Grid item sx = {{border: '1px solid #e8e8e8', height: '35vh'}}>
-                        {props.exercice && result && props.exercice.answer.includes(result) && <p>Well done!</p>}
-                        {props.exercice && result && !props.exercice.answer.includes(result) && <p>Try again!</p>}
-                    </Grid>
+                    <Grid item sx = {{ height: '65vh'}}>{props.exercice && <EditorType language={props.course.language} language_id={props.course.language_id} code={props.exercice.code} setResult={setResult}  exores={props.exercice.answer}/>}</Grid>
+              
                </Grid>
             </Grid>  
         </Grid>)

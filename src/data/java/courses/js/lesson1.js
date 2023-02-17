@@ -18,7 +18,7 @@ export const lesson1Javascript = {
     image: "../../images/jscours1exemple.png",
     exercices: exercices,
     language: "javascript",
-    langage_id: 63
+    language_id: 63
 };
 
 

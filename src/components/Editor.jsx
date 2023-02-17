@@ -1,30 +1,38 @@
 import Editor from "@monaco-editor/react"
-import {useRef} from "react"
-import {Box,Fab} from "@mui/material"
+import {useRef,useState} from "react"
+import {Box,Fab,Grid,Chip, Paper} from "@mui/material"
+import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
+import CloseIcon from '@mui/icons-material/Close';
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
 import axios from 'axios';
-import parse from 'html-react-parser';
+import { width } from "@mui/system";
+
 
 export default function EditorType(props){
    
-    const {language,language_id}=props
+    const {language,language_id,code,exores}=props
     console.info(language)
+    
     const editorRef =useRef(null) 
-     
+    const [reponse,setReponse]=useState("");
+    const [err,setErr]=useState("");
+
      const handleEditorMount=(editor,monaco)=>{
         editorRef.current =editor;
     }
+    const resexo=window.atob(exores)
 
 
     const getEditorValue=  async ()=>{
-      alert(editorRef.current.getValue(),language_id);
+     //alert(editorRef.current.getValue(),language_id);
       const options = {
         method: 'POST',
         url: 'https://judge0-ce.p.rapidapi.com/submissions/?base64_encoded=false&fields=*',
         headers: {
           'Content-Type': 'application/json',
           'content-type': 'application/json',
-          'X-RapidAPI-Key': '9dc2f20cd1msha8831e2c3f29c40p14db9djsnc8f462468e01',
+          'X-RapidAPI-Key': 'af4b035371msh2996afbaa09fd30p135789jsn0a3c647fecec',
+          /* 'X-RapidAPI-Key': '9dc2f20cd1msha8831e2c3f29c40p14db9djsnc8f462468e01', */
           'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
           accept: "application/json"
         },
@@ -43,6 +51,7 @@ export default function EditorType(props){
           url: `https://judge0-ce.p.rapidapi.com/submissions/${token}?base64_encoded=true`,
           headers: {
             'X-RapidAPI-Key': 'af4b035371msh2996afbaa09fd30p135789jsn0a3c647fecec',
+            /* 'X-RapidAPI-Key': '9dc2f20cd1msha8831e2c3f29c40p14db9djsnc8f462468e01', */
             'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
             'Content-Type': 'application/json',
             'content-type': 'application/json',
@@ -50,10 +59,13 @@ export default function EditorType(props){
         }
         axios.request(optionsGet).then(function (response) {
           if (response.data.stdout!=null){
-          const output=(response.data.stdout)
-          alert(window.atob(output))}else{
-            const errOutput=(response.data.stderr)
-            alert(window.atob(errOutput))
+          const output=window.atob(response.data.stdout)
+          alert((output))
+            setReponse(output)
+        }else{
+            const errOutput=window.atob(response.data.stderr)
+            alert((errOutput))
+            setErr(errOutput)
           }
         }).catch(function (error) {
           console.error(error);
@@ -63,19 +75,7 @@ export default function EditorType(props){
       }).catch(function (error) {
         console.error(error);
       });
-     /* await axios.post('https://judge0-ce.p.rapidapi.com/submissions',{headers:{
-          "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
-          "x-rapidapi-key": "af4b035371msh2996afbaa09fd30p135789jsn0a3c647fecec", // Get yours for free at https://rapidapi.com/judge0-official/api/judge0-ce/
-          "Content-Type": "application/json",
-          accept: "application/json",},
-          body: 
-            JSON.stringify({
-              source_code: editorRef.current.getValue(),
-              stdin: "",
-              language_id: language_id
-            }),
-        },).then((res)=>console.log(res)).catch((err)=>console.log(err)) */
-      //In this function we can send the code to judge0 throught a POST request  and GET the output
+     
     } 
     return(
         <Box sx={{height:'90%',
@@ -140,14 +140,47 @@ export default function EditorType(props){
                     "wrappingIndent": "none"
                   }}
                  onMount={handleEditorMount}
+                 value={code}
             />
            
            <Fab onClick={getEditorValue} variant="extended"  sx={{
             marginTop:"1rem"
+            
            }}>
                 <PlayCircleFilledWhiteOutlinedIcon sx={{ mr: 1 }} />
                 Run
             </Fab>
+            <Grid item sx = {{ height: '35vh'}}>
+              {err  && <Paper sx={{mt:2}} elevation={0}>
+                  <Box  sx={{
+                    backgroundColor:"#c91c1c4d",
+                    width:"50%",
+                    wordWrap: 'break-word',
+                    overflowY: "scroll"
+                    }}>
+                    {err}
+                  </Box> 
+                </Paper>
+              }
+              {reponse && <Paper sx={{mt:2}} elevation={0}>
+                
+                  {reponse===resexo ? <Chip  icon={<DoneOutlineIcon />} label="Success" color="success" variant="outlined" /> : <Chip  icon={<CloseIcon />} label="Wrong" color="warning" variant="outlined" />}
+                  <Box mt={2} sx={
+                    {
+                      width:"100%",
+                      wordWrap: 'break-word',
+                      overflowY: "scroll"
+                    }
+                    }>
+                    Reponse attendu <br/>
+                    {resexo}
+                    <br/>Reponse reçu <br/>
+                    <span>{reponse}</span>
+                  </Box>
+
+                   </Paper>  }
+              </Grid>
+            
       </Box>
     )
 }

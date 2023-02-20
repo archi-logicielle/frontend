@@ -172,9 +172,9 @@ export default function EditorType(props){
                       overflowY: "scroll"
                     }
                     }>
-                    Reponse attendu <br/>
+                    Reponse attendue <br/>
                     {resexo}
-                    <br/>Reponse reçu <br/>
+                    <br/>Reponse reçue <br/>
                     <span>{reponse}</span>
                   </Box>
 

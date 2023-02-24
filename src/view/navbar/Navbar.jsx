@@ -1,8 +1,8 @@
-import { AppBar, Toolbar, Typography } from "@material-ui/core"
+import { AppBar, IconButton, Toolbar, Typography } from "@material-ui/core"
 import 'codemirror/keymap/sublime';
 import 'codemirror/theme/dracula.css';
 import { useNavigate } from "react-router-dom";
-
+import HomeIcon from '@mui/icons-material/Home';
 const Navbar = () => {
     const navigate = useNavigate();
   //   const [mode, setMode] = React.useState('light');
@@ -35,7 +35,9 @@ const Navbar = () => {
             <AppBar position="sticky" >
                 <Toolbar variant='dense'>
                 <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }} onClick={goHome}>
-                    Home
+                    <IconButton>
+                        <HomeIcon sx={{color:"white"}}/>
+                    </IconButton>
                 </Typography>
                 {/* <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
                     {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}

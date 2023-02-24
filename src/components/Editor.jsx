@@ -5,7 +5,7 @@ import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
 import CloseIcon from '@mui/icons-material/Close';
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
 import axios from 'axios';
-import { width } from "@mui/system";
+
 
 
 export default function EditorType(props){
@@ -60,7 +60,7 @@ export default function EditorType(props){
         axios.request(optionsGet).then(function (response) {
           if (response.data.stdout!=null){
           const output=window.atob(response.data.stdout)
-          alert((output))
+          //alert((output))
             setReponse(output)
         }else{
             const errOutput=window.atob(response.data.stderr)
@@ -148,7 +148,7 @@ export default function EditorType(props){
             
            }}>
                 <PlayCircleFilledWhiteOutlinedIcon sx={{ mr: 1 }} />
-                Run
+                Submit Answer
             </Fab>
             <Grid item sx = {{ height: '35vh'}}>
               {err  && <Paper sx={{mt:2}} elevation={0}>

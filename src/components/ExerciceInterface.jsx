@@ -6,9 +6,8 @@ import parse from 'html-react-parser';
 import { exercices } from "../data/java/courses/js/lesson1";
 
 function ExerciceInterface(props) {
-    console.log(props)
-    console.log(props.exercices)
-    const [result, setResult] = React.useState(null);
+/*     console.log(props)
+    console.log(props.exercices) */
 
     return(
         <Grid container> 
@@ -101,7 +100,7 @@ function ExerciceInterface(props) {
                 sx = {{alignItems: 'stretch',
                         flexGrow: 1}}>
                <Grid item>
-                    <Grid item sx = {{ height: '65vh'}}>{props.exercice && <EditorType language={props.course.language} language_id={props.course.language_id} code={props.exercice.code} setResult={setResult}  exores={props.exercice.answer}/>}</Grid>
+                    <Grid item sx = {{ height: '65vh'}}>{props.exercice && <EditorType language={props.course.language} language_id={props.course.language_id} code={props.exercice.code}   exores={props.exercice.answer}/>}</Grid>
               
                </Grid>
             </Grid>  
